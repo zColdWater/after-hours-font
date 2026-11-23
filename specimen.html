@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AFTER HOURS — Gothic-Cyberpunk Typeface System</title>
+<style>
+  @font-face {
+    font-family: 'AfterHoursDisplay';
+    src: url('./AfterHours-Display.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'AfterHoursHeading';
+    src: url('./AfterHours-Heading.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1600px;
+    background: #06070d;
+    color: #eef2ff;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle illuminated-manuscript + PCB grid backdrop */
+  .canvas {
+    width: 1600px;
+    padding: 52px 64px 56px;
+    background:
+      radial-gradient(ellipse 900px 420px at 50% 10%, rgba(0, 238, 255, 0.14), transparent 70%),
+      radial-gradient(ellipse 700px 360px at 82% 16%, rgba(255, 42, 164, 0.13), transparent 68%),
+      radial-gradient(ellipse 650px 420px at 18% 58%, rgba(124, 58, 237, 0.10), transparent 70%),
+      linear-gradient(180deg, #070812 0%, #090b16 55%, #06070e 100%);
+    position: relative;
+  }
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(94, 242, 255, 0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(94, 242, 255, 0.032) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .disp { font-family: 'AfterHoursDisplay', serif; font-feature-settings: "kern" 1; }
+  .head { font-family: 'AfterHoursHeading', serif; font-feature-settings: "kern" 1; }
+
+  /* Top chrome bar */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(94, 242, 255, 0.22);
+    margin-bottom: 34px;
+    position: relative;
+    z-index: 2;
+  }
+  .brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #79f6ff;
+    font-weight: 600;
+  }
+  .diamond-bullet {
+    width: 9px;
+    height: 9px;
+    background: #ff2ea6;
+    transform: rotate(45deg);
+    box-shadow: 0 0 12px #ff2ea6;
+  }
+  .meta-pills {
+    display: flex;
+    gap: 10px;
+  }
+  .pill {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 13px;
+    border: 1px solid rgba(94, 242, 255, 0.28);
+    background: rgba(11, 15, 31, 0.85);
+    color: #c5d6ff;
+    border-radius: 3px;
+  }
+  .pill.accent {
+    border-color: rgba(255, 46, 166, 0.55);
+    color: #ff8cd0;
+    background: rgba(255, 46, 166, 0.08);
+  }
+
+  /* HERO EXPRESSIVE TREATMENT */
+  .hero-box {
+    position: relative;
+    z-index: 2;
+    padding: 46px 48px 42px;
+    border: 1px solid rgba(94, 242, 255, 0.28);
+    background:
+      linear-gradient(135deg, rgba(13, 17, 36, 0.92) 0%, rgba(10, 10, 22, 0.95) 60%, rgba(22, 10, 32, 0.90) 100%);
+    box-shadow:
+      inset 0 0 60px rgba(0, 238, 255, 0.06),
+      0 24px 70px rgba(0, 0, 0, 0.65);
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+  /* Corner PCB brackets */
+  .hero-box::before, .hero-box::after {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: 2px solid #5ef2ff;
+  }
+  .hero-box::before { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+  .hero-box::after { bottom: 10px; right: 10px; border-left: none; border-top: none; border-color: #ff2ea6; }
+
+  .section-kicker {
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #5ef2ff;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section-kicker span.right {
+    color: #9ba7cf;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-stage {
+    position: relative;
+    text-align: center;
+    padding: 18px 0 12px;
+  }
+  /* Electric scanline aligning exactly through the Display horizon notches */
+  .horizon-beam {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: 52.5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.45) 18%, rgba(255, 46, 166, 0.65) 50%, rgba(0, 240, 255, 0.45) 82%, transparent 100%);
+    box-shadow: 0 0 14px rgba(0, 240, 255, 0.45);
+    z-index: 1;
+  }
+  .hero-word-wrap {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+  }
+  .hero-word-echo {
+    position: absolute;
+    inset: 0;
+    font-size: 162px;
+    line-height: 1.0;
+    letter-spacing: 0.045em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 46, 166, 0.55);
+    transform: translate(5px, 4px);
+    filter: drop-shadow(0 0 18px rgba(255, 46, 166, 0.45));
+    pointer-events: none;
+  }
+  .hero-word {
+    position: relative;
+    font-size: 162px;
+    line-height: 1.0;
+    letter-spacing: 0.045em;
+    background: linear-gradient(180deg, #ffffff 0%, #e5f6ff 38%, #7beeff 54%, #c6d3ff 72%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 22px rgba(0, 238, 255, 0.36));
+  }
+  .hero-subline {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 28px;
+  }
+  .hero-lower {
+    font-size: 46px;
+    letter-spacing: 0.05em;
+    color: #e2ebff;
+    text-shadow: 0 0 18px rgba(94, 242, 255, 0.25);
+  }
+  .hero-num {
+    font-size: 46px;
+    letter-spacing: 0.06em;
+    color: #ff69c0;
+    text-shadow: 0 0 16px rgba(255, 46, 166, 0.40);
+  }
+
+  /* MODULAR DESIGN RULES (4-column anatomy grid) */
+  .rules-section {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 36px;
+  }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .rule-card {
+    background: rgba(11, 14, 29, 0.90);
+    border: 1px solid rgba(94, 242, 255, 0.18);
+    padding: 20px 20px 18px;
+    position: relative;
+  }
+  .rule-num {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: #ff69c0;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .rule-glyphs {
+    height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: rgba(5, 7, 15, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .rule-glyphs .g {
+    font-size: 86px;
+    line-height: 1;
+    color: #f4f7ff;
+    position: relative;
+    z-index: 2;
+  }
+  .guide-h {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: rgba(0, 240, 255, 0.55);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+    z-index: 3;
+  }
+  .guide-top { top: 22px; background: rgba(255, 46, 166, 0.55); }
+  .guide-mid { top: 54px; background: rgba(0, 240, 255, 0.72); }
+  .rule-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+  }
+  .rule-desc {
+    font-size: 13px;
+    line-height: 1.48;
+    color: #a9b6d9;
+  }
+
+  /* WEBSITE HEADING & PHONE READABILITY SHOWCASE */
+  .web-row {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+  .panel {
+    background: rgba(11, 14, 29, 0.92);
+    border: 1px solid rgba(94, 242, 255, 0.20);
+    padding: 26px 28px;
+  }
+  .site-mock {
+    background: #080a14;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .browser-bar {
+    background: #101426;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 12px;
+    color: #8290b8;
+  }
+  .dots { display: flex; gap: 6px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #2c3454; }
+  .dot.c1 { background: #ff477e; }
+  .dot.c2 { background: #ffd166; }
+  .dot.c3 { background: #38f2b5; }
+  .site-body {
+    padding: 28px 30px 26px;
+  }
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(94, 242, 255, 0.14);
+  }
+  .site-logo {
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: #79f6ff;
+  }
+  .site-links {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: #9ba7cf;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .site-h1 {
+    font-size: 62px;
+    line-height: 1.06;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  .site-h2 {
+    font-size: 27px;
+    line-height: 1.25;
+    letter-spacing: 0.025em;
+    color: #93f4ff;
+    margin-bottom: 14px;
+  }
+  .site-copy {
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: #b4c0e0;
+    max-width: 680px;
+  }
+
+  /* Phone frame */
+  .phone-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .phone-frame {
+    width: 340px;
+    background: #070911;
+    border: 2px solid #2b3559;
+    border-radius: 26px;
+    padding: 16px 18px 20px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), inset 0 0 0 1px rgba(94, 242, 255, 0.14);
+  }
+  .phone-notch {
+    width: 86px;
+    height: 10px;
+    background: #171d33;
+    border-radius: 8px;
+    margin: 0 auto 14px;
+  }
+  .phone-status {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #7c89b3;
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+  .phone-h1 {
+    font-size: 36px;
+    line-height: 1.08;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+  .phone-h2 {
+    font-size: 20px;
+    line-height: 1.28;
+    letter-spacing: 0.02em;
+    color: #ff7cc8;
+    margin-bottom: 10px;
+  }
+  .phone-h3 {
+    font-size: 16px;
+    line-height: 1.35;
+    letter-spacing: 0.025em;
+    color: #79f6ff;
+    margin-bottom: 10px;
+  }
+  .phone-body {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #a9b6d9;
+    margin-bottom: 14px;
+  }
+  .phone-card {
+    background: rgba(18, 24, 46, 0.9);
+    border-left: 3px solid #5ef2ff;
+    padding: 10px 12px;
+  }
+  .phone-card-title {
+    font-size: 18px;
+    color: #f4f7ff;
+    letter-spacing: 0.02em;
+    margin-bottom: 3px;
+  }
+  .phone-card-meta {
+    font-size: 11.5px;
+    color: #8290b8;
+  }
+
+  /* COMPLETE SPECIMEN MATRIX */
+  .charset-row {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .glyph-block {
+    margin-top: 12px;
+    background: #070912;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 20px 22px;
+  }
+  .glyph-line {
+    font-size: 40px;
+    line-height: 1.38;
+    letter-spacing: 0.055em;
+    color: #f4f7ff;
+  }
+  .glyph-line.lower {
+    color: #d6e4ff;
+  }
+  .glyph-line.nums {
+    color: #79f6ff;
+    margin-top: 4px;
+  }
+  .glyph-line.punc {
+    font-size: 36px;
+    color: #ff8cd0;
+    margin-top: 2px;
+  }
+
+  /* FOOTER: DESIGN NOTES + COVERAGE SPEC */
+  .footer {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 24px;
+    border-top: 1px solid rgba(94, 242, 255, 0.24);
+    padding-top: 24px;
+  }
+  .notes-title {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5ef2ff;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .notes-text {
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: #d6e0fa;
+  }
+  .spec-table {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #b4c0e0;
+  }
+  .spec-table strong { color: #ffffff; }
+  .badge-warn {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12px;
+    padding: 4px 10px;
+    border: 1px solid rgba(255, 209, 102, 0.45);
+    background: rgba(255, 209, 102, 0.08);
+    color: #ffe08a;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="grid-overlay"></div>
+
+  <!-- HEADER -->
+  <div class="topbar">
+    <div class="brand-tag">
+      <div class="diamond-bullet"></div>
+      <span>AFTER HOURS &middot; ORIGINAL GOTHIC-CYBERPUNK TYPEFACE SYSTEM</span>
+    </div>
+    <div class="meta-pills">
+      <span class="pill accent">2 WORKING .OTF FILES</span>
+      <span class="pill">85 GLYPHS (BASIC LATIN)</span>
+      <span class="pill">DISPLAY + WEB HEADING CUTS</span>
+    </div>
+  </div>
+
+  <!-- 1. HERO EXPRESSIVE TREATMENT -->
+  <div class="hero-box">
+    <div class="section-kicker">
+      <span>01 // EXPRESSIVE HERO TREATMENT &mdash; AFTERHOURS-DISPLAY.OTF</span>
+      <span class="right">3.35:1 CONTRAST &middot; HORIZON PCB NOTCH AT Y=420u &middot; GPOS KERNED</span>
+    </div>
+    <div class="hero-stage">
+      <div class="horizon-beam"></div>
+      <div class="hero-word-wrap">
+        <div class="disp hero-word-echo" aria-hidden="true">AFTER HOURS</div>
+        <div class="disp hero-word">AFTER HOURS</div>
+      </div>
+      <div class="hero-subline">
+        <span class="disp hero-lower">after hours &mdash; midnight signal</span>
+        <span class="disp hero-num">0123456789</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CONSISTENT MODULAR DESIGN RULES -->
+  <div class="rules-section">
+    <div class="section-kicker" style="margin-bottom: 12px;">
+      <span>02 // REPEATING ARCHITECTURAL RULES &mdash; FAMILY GRAMMAR ACROSS LETTERS</span>
+      <span class="right">100% ORIGINAL PARAMETRIC BEZIER CONSTRUCTION (ZERO TRACING)</span>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-num">RULE 01 // GOTHIC BONES</div>
+        <div class="rule-glyphs">
+          <div class="guide-h guide-top"></div>
+          <span class="disp g">O</span>
+          <span class="disp g">A</span>
+          <span class="disp g">h</span>
+        </div>
+        <div class="rule-title">Pointed Lancet Arches</div>
+        <div class="rule-desc">Bowls and shoulders share true cubic-Bezier Gothic ogive peaks (+16u overshoot) with broad-nib vertical/horizontal stroke contrast.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-num">RULE 02 // CYBERPUNK BUS</div>
+        <div class="rule-glyphs">
+          <div class="guide-h guide-mid"></div>
+          <span class="disp g">F</span>
+          <span class="disp g">H</span>
+          <span class="disp g">R</span>
+        </div>
+        <div class="rule-title">Aligned Horizon Notch</div>
+        <div class="rule-desc">Every Display stem carries a 45&deg; circuit-board notch locked to y=420u (caps) / y=285u (lowercase), creating one continuous neon horizon line.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-num">RULE 03 // SHARP TERMINALS</div>
+        <div class="rule-glyphs">
+          <span class="disp g">T</span>
+          <span class="disp g">E</span>
+          <span class="disp g">7</span>
+        </div>
+        <div class="rule-title">Blackletter Crowns &amp; Spurs</div>
+        <div class="rule-desc">45&deg; manuscript crowns, hanging dagger spurs, and chamfered PCB arms repeat identically across capitals, lowercase, and numerals.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-num">RULE 04 // PLAYFUL SPARK</div>
+        <div class="rule-glyphs">
+          <span class="disp g">i</span>
+          <span class="disp g">0</span>
+          <span class="disp g">!</span>
+        </div>
+        <div class="rule-title">Diamond-LED Diacritics</div>
+        <div class="rule-desc">Tittles, punctuation dots, the 'A' jewel core, and slashed '0' share a faceted 45&deg; diamond crystal geometry for dark, playful electricity.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SIMPLER WEBSITE HEADING CUT + PHONE LEGIBILITY -->
+  <div class="web-row">
+    <div class="panel">
+      <div class="section-kicker">
+        <span>03 // WEBSITE HEADING CUT &mdash; AFTERHOURS-HEADING.OTF</span>
+        <span class="right">1.81:1 CONTRAST &middot; +8% WIDER COUNTERS</span>
+      </div>
+      <div class="site-mock">
+        <div class="browser-bar">
+          <div class="dots"><div class="dot c1"></div><div class="dot c2"></div><div class="dot c3"></div></div>
+          <span>https://afterhours.dev // personal site header preview</span>
+          <span>DESKTOP H1 &middot; H2</span>
+        </div>
+        <div class="site-body">
+          <div class="site-nav">
+            <div class="head site-logo">AFTER HOURS</div>
+            <div class="site-links"><span>Work</span><span>Essays</span><span>Lab 09</span><span>Contact</span></div>
+          </div>
+          <div class="head site-h1">AFTER HOURS</div>
+          <div class="head site-h2">Notes from a Neon Cathedral &mdash; Issue 04 / 2026</div>
+          <div class="site-copy">
+            The Heading cut removes tiny stem notches, opens inner counters by 8%, and softens hairline contrast from 3.35:1 to 1.81:1 so titles retain unmistakable Gothic-cyberpunk swagger without breaking up at web heading sizes.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section-kicker">
+        <span>04 // MOBILE PHONE LEGIBILITY</span>
+        <span class="right">375PX VIEWPORT SCALE</span>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-status"><span>02:47 AM</span><span>5G &middot; 94%</span></div>
+          <div class="head phone-h1">AFTER HOURS</div>
+          <div class="head phone-h2">Midnight Dispatch #09</div>
+          <div class="head phone-h3">16px H3: Sharp on Small Screens</div>
+          <div class="phone-body">
+            Pointed lancet counters stay open and distinct down to 16&ndash;20px on mobile displays while keeping every diagonal chamfer crisp.
+          </div>
+          <div class="phone-card">
+            <div class="head phone-card-title">Build Log 2026 &mdash; After Hours</div>
+            <div class="phone-card-meta">Rendered live using AfterHours-Heading.otf</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. COMPLETE CHARACTER SET (BOTH OTF CUTS) -->
+  <div class="charset-row">
+    <div class="panel">
+      <div class="section-kicker">
+        <span>05 // AFTERHOURS-DISPLAY.OTF &mdash; COMPLETE GLYPH SET</span>
+        <span class="right">HERO &amp; POSTER USE</span>
+      </div>
+      <div class="glyph-block">
+        <div class="disp glyph-line">ABCDEFGHIJKLM</div>
+        <div class="disp glyph-line">NOPQRSTUVWXYZ</div>
+        <div class="disp glyph-line lower">abcdefghijklm</div>
+        <div class="disp glyph-line lower">nopqrstuvwxyz</div>
+        <div class="disp glyph-line nums">0123456789</div>
+        <div class="disp glyph-line punc">!?.,:;-&mdash;/&amp;+#@()[]'"_*</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="section-kicker">
+        <span>06 // AFTERHOURS-HEADING.OTF &mdash; COMPLETE GLYPH SET</span>
+        <span class="right">H1&ndash;H3 &amp; MOBILE WEB</span>
+      </div>
+      <div class="glyph-block">
+        <div class="head glyph-line">ABCDEFGHIJKLM</div>
+        <div class="head glyph-line">NOPQRSTUVWXYZ</div>
+        <div class="head glyph-line lower">abcdefghijklm</div>
+        <div class="head glyph-line lower">nopqrstuvwxyz</div>
+        <div class="head glyph-line nums">0123456789</div>
+        <div class="head glyph-line punc">!?.,:;-&mdash;/&amp;+#@()[]'"_*</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. DESIGN CHOICES & CHARACTER COVERAGE -->
+  <div class="footer">
+    <div>
+      <div class="notes-title">DESIGN CHOICES</div>
+      <div class="notes-text">
+        After Hours builds every letter on pointed Gothic lancet arches, high-contrast broad-nib strokes, and 45&deg; blackletter crowns, then hacks those manuscript bones with aligned circuit-board stem notches (locked to a single horizon line across words) and faceted diamond-LED punctuation. Rather than shipping one fussy decorative wordmark, the family splits into two working OpenType masters: an expressive <strong>Display</strong> cut for dark-electric hero banners and a calmer, wider-counter <strong>Heading</strong> cut stripped of micro-cuts so 16&ndash;24px titles stay crisp on a phone screen. Every curve and contour was engineered from scratch as original cubic-Bezier geometry with zero tracing of existing typefaces.
+      </div>
+    </div>
+    <div>
+      <div class="notes-title">WORKING .OTF COVERAGE &amp; STATUS</div>
+      <div class="spec-table">
+        <div><strong>Included Files:</strong> AfterHours-Display.otf &amp; AfterHours-Heading.otf (+ .woff2)</div>
+        <div><strong>Supported Characters (85 glyphs):</strong> Basic Latin A&ndash;Z, a&ndash;z, 0&ndash;9, space, and core punctuation (!?.,:;-&mdash;/&amp;+#@()[]'"_*), plus GPOS pair kerning.</div>
+        <div class="badge-warn">INCOMPLETE EXTENDED LATIN: Accented diacritics (&eacute;, &uuml;, &ntilde;) &amp; non-Latin scripts not included in v1.0.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

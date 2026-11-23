@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFTER HOURS — Original Gothic-Cyberpunk Typeface (.OTF)</title>
+<style>
+  @font-face {
+    font-family: 'AfterHoursDisplay';
+    src: url('./AfterHours-Display.woff2') format('woff2'),
+         url('./AfterHours-Display.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'AfterHoursHeading';
+    src: url('./AfterHours-Heading.woff2') format('woff2'),
+         url('./AfterHours-Heading.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(ellipse 900px 420px at 50% 0%, rgba(0, 238, 255, 0.14), transparent 70%),
+                radial-gradient(ellipse 650px 340px at 85% 15%, rgba(255, 46, 166, 0.12), transparent 70%),
+                #06070e;
+    color: #eef2ff;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    line-height: 1.6;
+    padding: 32px 20px 72px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .disp { font-family: 'AfterHoursDisplay', serif; font-feature-settings: "kern" 1; }
+  .head { font-family: 'AfterHoursHeading', serif; font-feature-settings: "kern" 1; }
+  .hero {
+    text-align: center;
+    padding: 48px 24px 40px;
+    border: 1px solid rgba(94, 242, 255, 0.28);
+    background: rgba(11, 14, 29, 0.9);
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-size: clamp(52px, 11vw, 132px);
+    line-height: 1.02;
+    letter-spacing: 0.045em;
+    background: linear-gradient(180deg, #fff 0%, #7beeff 52%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0, 238, 255, 0.35));
+    margin-bottom: 14px;
+  }
+  .hero p { color: #a9b6d9; max-width: 720px; margin: 0 auto 24px; font-size: 15px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border: 1px solid #5ef2ff;
+    color: #06070e;
+    background: #5ef2ff;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+  }
+  .btn.alt { background: transparent; color: #ff8cd0; border-color: #ff2ea6; }
+  .card {
+    background: rgba(11, 14, 29, 0.88);
+    border: 1px solid rgba(94, 242, 255, 0.20);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .kicker {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #5ef2ff;
+    margin-bottom: 14px;
+  }
+  .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 16px; }
+  .controls button {
+    padding: 7px 14px;
+    background: #131833;
+    border: 1px solid rgba(94, 242, 255, 0.35);
+    color: #eef2ff;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .controls button.active { background: #5ef2ff; color: #06070e; font-weight: 700; }
+  .tester {
+    width: 100%;
+    min-height: 110px;
+    background: #060811;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: #fff;
+    padding: 20px;
+    font-size: 64px;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    outline: none;
+  }
+  .charset { font-size: clamp(24px, 4vw, 42px); line-height: 1.4; letter-spacing: 0.05em; word-break: break-word; }
+  .specimen-img { width: 100%; border: 1px solid rgba(94, 242, 255, 0.25); display: block; margin-top: 12px; }
+  .note { color: #b4c0e0; font-size: 14.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1 class="disp">AFTER HOURS</h1>
+    <p>Original Gothic-Cyberpunk Latin display &amp; website heading font family — two installable OpenType CFF (<code>.otf</code>) fonts engineered from scratch with cubic-Bezier Gothic lancet arches and 45&deg; circuit-board geometry.</p>
+    <div class="btns">
+      <a class="btn" href="https://github.com/zColdWater/after-hours-font/releases/download/v1.0.0/AfterHours-Display.otf">Download AfterHours-Display.otf</a>
+      <a class="btn alt" href="https://github.com/zColdWater/after-hours-font/releases/download/v1.0.0/AfterHours-Heading.otf">Download AfterHours-Heading.otf</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="kicker">Interactive Live Type Tester (.OTF / .WOFF2)</div>
+    <div class="controls">
+      <button id="bDisp" class="active" onclick="setCut('disp')">Display Cut (Hero)</button>
+      <button id="bHead" onclick="setCut('head')">Heading Cut (Web / Phone)</button>
+      <label style="font-size:12px;color:#9ba7cf;">Size: <input id="sz" type="range" min="16" max="120" value="64" oninput="setSz(this.value)"> <span id="szv">64px</span></label>
+    </div>
+    <div id="tester" class="tester disp" contenteditable="true" spellcheck="false">AFTER HOURS — 2026 · after hours 0123456789</div>
+  </section>
+
+  <section class="card">
+    <div class="kicker">Character Coverage (85 Glyphs — Basic Latin)</div>
+    <div class="disp charset">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 !?.,:;-&mdash;/&amp;+#@()[]'"_*</div>
+    <p class="note" style="margin-top:12px;"><strong>Coverage Notice:</strong> Complete Basic Latin uppercase (A&ndash;Z), lowercase (a&ndash;z), lining numerals (0&ndash;9), space, and 21 core punctuation/symbols with GPOS pair kerning. <em>Incomplete extended Latin:</em> accented diacritics (&eacute;, &uuml;, &ntilde;) and non-Latin scripts are not included in v1.0.</p>
+  </section>
+
+  <section class="card">
+    <div class="kicker">Full Type Specimen &amp; Modular Design System</div>
+    <img class="specimen-img" src="./after-hours-specimen.png" alt="After Hours Gothic-Cyberpunk Font Specimen">
+  </section>
+</div>
+<script>
+function setCut(c) {
+  const t = document.getElementById('tester');
+  t.className = 'tester ' + c;
+  document.getElementById('bDisp').classList.toggle('active', c === 'disp');
+  document.getElementById('bHead').classList.toggle('active', c === 'head');
+}
+function setSz(v) {
+  document.getElementById('tester').style.fontSize = v + 'px';
+  document.getElementById('szv').textContent = v + 'px';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+AFTER HOURS — Original Gothic-Cyberpunk Latin Display & Website Heading Typeface System
+Submission for Taskmarket TSK-1ZQ87Q8M (0xa613c1b04c29e1ac5a5dd6435ddec3d718d6c7fb6d7c5aa21ddb29629ce8e328)
+
+======================================================================
+1. PUBLIC DOWNLOAD LINKS (WORKING .OTF FONTS + LIVE INTERACTIVE DEMO)
+======================================================================
+- Expressive Hero Cut (.otf):
+  https://github.com/zColdWater/after-hours-font/releases/download/v1.0.0/AfterHours-Display.otf
+- Website Heading / Mobile Cut (.otf):
+  https://github.com/zColdWater/after-hours-font/releases/download/v1.0.0/AfterHours-Heading.otf
+- Web Fonts (.woff2):
+  https://github.com/zColdWater/after-hours-font/releases/download/v1.0.0/AfterHours-Display.woff2
+  https://github.com/zColdWater/after-hours-font/releases/download/v1.0.0/AfterHours-Heading.woff2
+- Public Repository & Source Generator:
+  https://github.com/zColdWater/after-hours-font
+- Live Interactive Type Tester (GitHub Pages):
+  https://zColdWater.github.io/after-hours-font/
+
+(Both working .otf files AND the high-resolution specimen sheet after-hours-specimen.png are also attached directly to this Taskmarket submission.)
+
+======================================================================
+2. DESIGN CHOICES (3 SENTENCES)
+======================================================================
+After Hours builds every letter on pointed Gothic lancet arches, high-contrast broad-nib strokes, and 45-degree blackletter crowns, then hacks those manuscript bones with aligned circuit-board stem notches (locked to a single y=420u horizon line across words) and faceted diamond-LED punctuation. Rather than shipping one fussy decorative wordmark, the family splits into two working OpenType masters: an expressive Display cut (3.35:1 contrast) for dark-electric hero banners and a calmer, wider-counter Heading cut (1.81:1 contrast, +8% wider counters, zero micro-cuts) so 16-24px titles stay crisp on a phone screen. Every curve and contour was engineered from scratch as original cubic-Bezier geometry with zero tracing of any existing typeface.
+
+======================================================================
+3. CHARACTER SUPPORT & EXPLICIT INCOMPLETE-FONT LABEL
+======================================================================
+- Supported Characters (85 glyphs per .otf file):
+  * Uppercase Basic Latin: A-Z (26 glyphs)
+  * Lowercase Basic Latin: a-z (26 glyphs)
+  * Lining Numerals: 0-9 (10 glyphs)
+  * Core Punctuation & Symbols: ! ? . , : ; - — _ / + & # @ ( ) [ ] ' " * (21 glyphs)
+  * Space + .notdef (2 glyphs) + OpenType GPOS pair kerning (35 pairs incl. AF, AT, FA, FT, TE, ER, HO, OU, UR, RS)
+- INCOMPLETE EXTENDED LATIN LABEL:
+  This v1.0 release is complete for English / Basic Latin display & web headings, but does NOT yet include accented/extended Latin diacritics (e.g., e-acute, u-umlaut, n-tilde), currency signs, or non-Latin scripts.
+
+======================================================================
+4. VERIFICATION & ORIGINALITY
+======================================================================
+- Both AfterHours-Display.otf (8,788 bytes) and AfterHours-Heading.otf (8,340 bytes) are valid OpenType CFF (.otf) binaries compiled via fontTools + skia-pathops, verified live in Chromium via @font-face (the entire after-hours-specimen.png poster is rendered directly using these two .otf files).
+- 100% original parametric design; zero tracing or derivatives of any existing typeface.
+- If selected and paid, requester has full rights to use and adapt the design and font files on their personal website with credit to OmniForge Type Lab (zColdWater).
